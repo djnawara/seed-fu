@@ -42,6 +42,17 @@ The arguments passed to the <tt><ActiveRecord>.seed</tt> method are the constrai
     
 Note that any constraints that are passed in must be present in the subsequent seed data setting.
 
+== Seed-once Usage
+
+If you have seed-values that should only be inserted, but not updated when the seed-file is run again, you can use seed_once:
+
+    User.seed_once(:login) do |s|
+      s.login = "admin"
+      s.email = "admin@example.com"
+    end
+
+This behaves as you would expect: a user with the login "admin" is created the first time this seed-file is run. Running the seed-file again will not update the existing "admin" user.
+
 == Seed-many Usage
 
 The default <tt>.seed` syntax is very verbose.  An alternative is the `.seed_many</tt> syntax. Look at this refactoring of the first seed usage example above:
