@@ -116,7 +116,9 @@ Say you have a CSV you need to massage and store as seed files.  You can create 
     seed_writer.finish
 
 There is also a SeedFu::Writer::Seed in case you prefere the seed()
-syntax over the seen_many() syntax.  Easy-peasy.
+syntax over the seen_many() syntax.  You can even use a 
+SeedFu::Writer::SeedOnce writer if you prefer already seeded values
+not to be overwritten. Easy-peasy.
 
 == Contributors
 
