@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe SeedFu::Writer::SeedOnce do
-  describe "initialize" do
+  describe "common usage" do
 
     def build_instance
       @seed_file_name = 'stubseed.rb'
@@ -31,11 +31,27 @@ describe SeedFu::Writer::SeedOnce do
 
       expected_seed = <<SEED_END
 SeededModel.seed_once(:title) { |s|
-  s.first_name = 'Steve'
-  s.title = 'Peon'
-  s.login = 'bob'
+  s.first_name = "Steve"
+  s.title = "Peon"
+  s.login = "bob"
 }
 SEED_END
+      @output.string.should include_text(expected_seed)
+    end
+
+    it "should escape strings with ' in them" do
+      writer = build_instance
+      writer.add_seed(
+        :title => "Hero",
+        :first_name => "Mc'Gyver \"von\""
+      )
+      writer.finish
+
+      expected_seed = %q[
+SeededModel.seed_once(:title) { |s|
+  s.first_name = "Mc'Gyver \\"von\\""
+  s.title = "Hero"
+}]
       @output.string.should include_text(expected_seed)
     end
   end
