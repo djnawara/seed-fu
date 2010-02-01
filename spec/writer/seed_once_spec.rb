@@ -54,5 +54,26 @@ SeededModel.seed_once(:title) { |s|
 }]
       @output.string.should include_text(expected_seed)
     end
+
+    it "should use here-doc for multiline output for easier hand-editing of seeds" do
+      writer = build_instance
+      writer.add_seed(
+        :first_name => "Multi\nLine'n'art\n  Adventures!",
+        :title => 'More'
+      )
+      writer.finish
+
+      expected_seed = %q[
+SeededModel.seed_once(:title) { |s|
+  s.first_name = <<SEED_DATA_VALUE
+Multi
+Line'n'art
+  Adventures!
+SEED_DATA_VALUE
+  s.title = "More"
+}
+]
+      @output.string.should include_text(expected_seed)
+    end
   end
 end
