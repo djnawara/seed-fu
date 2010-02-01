@@ -32,8 +32,8 @@ describe SeedFu::Writer::SeedOnce do
       expected_seed = <<SEED_END
 SeededModel.seed_once(:title) { |s|
   s.first_name = "Steve"
-  s.title = "Peon"
   s.login = "bob"
+  s.title = "Peon"
 }
 SEED_END
       @output.string.should include_text(expected_seed)

@@ -8,7 +8,9 @@ module SeedFu
         seed_cols = seed_by.collect{|s| ":#{s}"}.join(',')
         seed_handle.syswrite("#{config[:seed_model]}.seed_once(#{seed_cols}) { |s|\n")
 
-        hash.each_pair do |key, value|
+        hash.stringify_keys!
+        hash.keys.sort.each do |key|
+          value = hash[key]
           if value =~ /\n/
             seed_handle.syswrite("  s.#{key} = <<SEED_DATA_VALUE\n")
             seed_handle.syswrite("#{value}\nSEED_DATA_VALUE\n")
