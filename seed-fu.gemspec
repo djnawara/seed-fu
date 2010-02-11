@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Michael Bleigh"]
-  s.date = %q{2010-01-20}
+  s.date = %q{2010-02-11}
   s.description = %q{Seed Fu is an attempt to once and for all solve the problem of inserting and maintaining seed data in a database. It uses a variety of techniques gathered from various places around the web and combines them to create what is hopefully the most robust seed data system around.}
   s.email = %q{michael@intridea.com}
   s.extra_rdoc_files = [
@@ -24,10 +24,12 @@ Gem::Specification.new do |s|
      "lib/seed-fu/writer/abstract.rb",
      "lib/seed-fu/writer/seed.rb",
      "lib/seed-fu/writer/seed_many.rb",
+     "lib/seed-fu/writer/seed_once.rb",
      "rails/init.rb",
      "spec/schema.rb",
      "spec/seed_fu_spec.rb",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/writer/seed_once_spec.rb"
   ]
   s.homepage = %q{http://github.com/mblegih/seed-fu}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -37,7 +39,8 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/schema.rb",
      "spec/seed_fu_spec.rb",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/writer/seed_once_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
