@@ -19,9 +19,10 @@ module SeedFu
       end
 
       def add_seed(hash)
+        hash.extend(HashExt)
         seed_handle.syswrite( (<<-END
 #{',' unless self.number_of_seeds == 0 or chunk_this_seed?}
-  { #{hash.collect{|k,v| ":#{k} => %{#{v}}"}.join(', ')} }
+  { #{hash} }
         END
         ).chomp )
         super(hash)
