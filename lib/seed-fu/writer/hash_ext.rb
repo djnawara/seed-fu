@@ -4,7 +4,7 @@ module HashExt
     self.each do |k,v|
       if v.kind_of?(Hash)
         v.extend(HashExt)
-        strings << "{ :#{k} => { #{v} } }"
+        strings << ":#{k} => { #{v} }"
       else
         strings << ":#{k} => %{#{v}}"
       end
