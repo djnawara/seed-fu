@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
      "lib/seed-fu.rb",
      "lib/seed-fu/writer.rb",
      "lib/seed-fu/writer/abstract.rb",
-     "lib/seed-fu/writer/hash_ext.rb",
      "lib/seed-fu/writer/seed.rb",
      "lib/seed-fu/writer/seed_many.rb",
      "rails/init.rb",
