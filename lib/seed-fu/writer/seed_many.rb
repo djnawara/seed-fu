@@ -19,12 +19,8 @@ module SeedFu
       end
 
       def add_seed(hash)
-        hash.extend(HashExt)
-        seed_handle.syswrite( (<<-END
-#{',' unless self.number_of_seeds == 0 or chunk_this_seed?}
-  { #{hash} }
-        END
-        ).chomp )
+        seed_handle.syswrite(",") unless self.number_of_seeds == 0 or chunk_this_seed?
+        seed_handle.syswrite(hash.inspect)
         super(hash)
 
         if chunk_this_seed?
