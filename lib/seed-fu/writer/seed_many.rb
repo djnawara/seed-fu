@@ -19,7 +19,7 @@ module SeedFu
       end
 
       def add_seed(hash)
-        seed_handle.syswrite(",") unless self.number_of_seeds == 0 or chunk_this_seed?
+        seed_handle.syswrite(",\n") unless self.number_of_seeds == 0 or chunk_this_seed?
         seed_handle.syswrite(hash.inspect)
         super(hash)
 
