@@ -71,7 +71,12 @@ class ActiveRecord::Base
   # === Parameters
   # constraints :: Immutable reference attributes. Defaults to :id
   def self.seed(*constraints, &block)
-    SeedFu::Seeder.plant(self, *constraints, &block)
+    if constraints.last.is_a?(Hash)
+      constraints[-1] = [constraints.last]
+      self.seed_many(*constraints)
+    else
+      SeedFu::Seeder.plant(self, *constraints, &block)
+    end
   end
 
   def self.seed_once(*constraints, &block)
